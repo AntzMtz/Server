@@ -1,162 +1,59 @@
-
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Almacen</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-
-
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-
-    <title>Get Current URL in JavaScript</title>
-    
-    <style>
-        td {
-            padding: 5px;
-            background-color: chartreuse;
-            width: 50%;
-            border-top: 1px dashed forestgreen;
-            margin: 15px auto;
-            text-align: center;
-        }
-        
-        div {
-            margin: 2px auto;
-        }
-    </style>
-
-</head>
-
-
-<body>
-
-
-    <div>
-        <h1 id="Titulo">AJAX</h1>
-        <button type="button" id="boton">Get Page URL</button>
-        <ul id="list">
-
-        </ul>
-    </div>
-    <div>
-        <form name="registro_usuarios" id="registro">
-            <h1 id="Titulo2">AJAX POST</h1>
-            <div>
-                Usuario: &nbsp;
-                <input type="text" id="user">
-            </div>
-            <div>
-                Contraseña:&nbsp;
-                <input type="text" id="pass">
-            </div>
-            <div>
-                <input type="button" id="BotonReg" value="Registro">
-            </div>
+  <head>
+    <title>
+       Conexión MySQL Node JS
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a href="#" class="navbar-brand mx-auto" >Usuarios</a>
+    </nav>
+    <div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-4 text-center">
+        <table class="table table-striped">
+          <tr>
+            <td>ID</td>
+            <td>Nombre</td>
+            <td>Password</td>
+          </tr>
+          <% for (var i = 0; i < UsuarioRes.length; i ++) { %>
+            <tr>
+              <td><%= UsuarioRes[i].IdUser %></td>
+              <td><%= UsuarioRes[i].Nombre %></td>
+              <td><%= UsuarioRes[i].Password %></td>
+            </tr>    
+          <% } %>
+        </table>
+      </div>
+      <div class="col-md-6 mt-4 card">
+        <form  action="/news" method="POST" class="card-body">
+          <h3 class="card-title">agrega Usuarios</h3>
+          <div class="form-group">
+            IdUser
+            <input type="text" name="IdU" value="" class="form-control" placeholder="IDUser">
+          </div>
+          <div class="form-group">
+            Nombre
+            <input type="text" name="Nom" value="" class="form-control" placeholder="Nombre">
+          </div>
+          <div class="form-group">
+            Password  
+            <input type="text" name="Pass" value="" class="form-control" placeholder="Password">
+          </div>
+          <input type="submit" name="" value="Grabar" class="btn-primary">
         </form>
+
+      </div>
     </div>
-    <script>
-        var Salida = "";
-        var regi = document.getElementById("BotonReg");
-        var form1 = document.getElementById("registro");
-
-        
-        regi.addEventListener("click", (e) => {
-            e.preventDefault()
-            console.log("sidio click");
-            sendData(form1);
-
-        })
-
-
-
-
-
-
-        var boton = document.getElementById("boton");
-        boton.addEventListener('click', () => {
-            let xhr;
-            // const Url30 = 'https://xkcd.com/info.0.json';
-            const Url30 = 'https://gsindical-gral-lazarocardenas.herokuapp.com/dishes';
-            if (window.XMLHttpRequest) {
-                xhr = new XMLHttpRequest();
-                console.log("si tiene");
-                xhr.open('GET', Url30);
-                xhr.addEventListener('load', (data) => {
-                    console.log(JSON.parse(data.target.response))
-
-
-                    var JSONDATA = (JSON.parse(data.target.response))
-                    var obj = JSONDATA[0].comments;
-                    console.log(obj);
-                    var body = document.getElementsByTagName("body")[0];
-                    var list = document.getElementById("list")
-                    list = document.createElement("TABLE")
-                    var tblBody = document.createElement("tbody");
-
-                    var hilera;
-                    var celda;
-                    var texto;
-
-                    hilera = document.createElement("tr")
-                    for (var i = 0; i < 2; i++) {
-                        celda = document.createElement("td");
-                        if (i == 0) {
-                            Salida = "_ID";
-
-                        } else if (i == 1) {
-                            Salida = "RATING";
-                        }
-                        texto = document.createTextNode(Salida);
-                        celda.appendChild(texto);
-                        hilera.appendChild(celda);
-                        tblBody.appendChild(hilera);
-
-
-                    }
-
-
-
-                    for (var useri of obj) {
-                        console.log(useri._id);
-                        hilera = document.createElement("tr")
-                        for (var i = 0; i < 2; i++) {
-                            celda = document.createElement("td");
-                            if (i == 0) {
-                                Salida = `${useri._id}`;
-
-                            } else if (i == 1) {
-                                Salida = `${useri.rating}`;
-                            }
-                            texto = document.createTextNode(Salida);
-                            celda.appendChild(texto);
-                            hilera.appendChild(celda);
-                            tblBody.appendChild(hilera);
-
-
-                        }
-                    }
-                    list.appendChild(tblBody);
-                    body.appendChild(list);
-
-                })
-                xhr.send()
-
-            } else {
-                xhr = new ActiveXObject("Microsoft.XMHTTP")
-            }
-
-        })
-    </script>
-
-
-
-
-</body>
-
+  </div>
+    
+    
+    
+      
+    
+    
+  </body>
 </html>

@@ -1,27 +1,29 @@
-// const dbConnection = require('../../config/dbConnection');
+const dbConnection = require('../../config/dbConnection');
 module.exports = app => {
-  // const connection = dbConnection();
+  const connection = dbConnection();
   app.get('/', (req, res) => {
-    // connection.query('SELECT * FROM Usuarios', (err, result) =>{
-      res.render('news/news')
-    // })
+    connection.query('SELECT * FROM Usuarios', (err, result) =>{
+      res.render('news/news',{
+        UsuarioRes: result
+      })
+    })
       
-  // });
-  // app.post('/news',(req,res)=>{
-  //   const{IdU,Nom,Pass}=req.body;
-  //   connection.query('Insert into Usuarios set ?',
-  //   {
-  //     IdUser:IdU,
-  //     Nombre:Nom,
-  //     Password:Pass
-  //   }
-  //   , (err,result)=>{
-  //     res.redirect('/');
-  //   });
-  //   console.log(req.body);
+  });
+  app.post('/news',(req,res)=>{
+    const{IdU,Nom,Pass}=req.body;
+    connection.query('Insert into Usuarios set ?',
+    {
+      IdUser:IdU,
+      Nombre:Nom,
+      Password:Pass
+    }
+    , (err,result)=>{
+      res.redirect('/');
+    });
+    console.log(req.body);
     
   });
-// }
+}
 
 
 
@@ -50,8 +52,3 @@ module.exports = app => {
 //     });
 //   });
 // };
-// module.exports = app => {
-//   app.get('/', (req, res) => {
-//     res.redirect('/Envia.html');
-//   });
-}
