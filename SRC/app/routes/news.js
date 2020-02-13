@@ -1,12 +1,10 @@
 // const dbConnection = require('../../config/dbConnection');
-// module.exports = app => {
-//   const connection = dbConnection();
-  // app.get('/', (req, res) => {
-  //   connection.query('SELECT * FROM Usuarios', (err, result) =>{
-  //     res.render('news/news',{
-  //       UsuarioRes: result
-  //     })
-  //   })
+module.exports = app => {
+  // const connection = dbConnection();
+  app.get('/', (req, res) => {
+    // connection.query('SELECT * FROM Usuarios', (err, result) =>{
+      res.render('news/news')
+    // })
       
   // });
   // app.post('/news',(req,res)=>{
@@ -22,7 +20,7 @@
   //   });
   //   console.log(req.body);
     
-  // });
+  });
 // }
 
 
@@ -52,8 +50,8 @@
 //     });
 //   });
 // };
-module.exports = app => {
-  app.get('/', (req, res) => {
-      res.send('Hola Mundo')
-  });
+// module.exports = app => {
+//   app.get('/', (req, res) => {
+//     res.redirect('/Envia.html');
+//   });
 }
